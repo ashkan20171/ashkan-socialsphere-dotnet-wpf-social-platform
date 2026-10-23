@@ -1,0 +1,28 @@
+<Window x:Class="AshkanSocialSphere.Desktop.LoginWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Ashkan SocialSphere | Welcome" Icon="Assets/SocialSphere.ico" Width="980" Height="690" MinWidth="820" MinHeight="610" WindowStartupLocation="CenterScreen" Background="#0D1426" Foreground="#F6F7FF" FontFamily="Segoe UI">
+ <Window.Resources>
+  <Style TargetType="TextBox"><Setter Property="Height" Value="44"/><Setter Property="Padding" Value="12,9"/><Setter Property="Background" Value="#202C45"/><Setter Property="Foreground" Value="White"/><Setter Property="BorderBrush" Value="#465577"/><Setter Property="BorderThickness" Value="1"/><Setter Property="FontSize" Value="14"/></Style>
+  <Style x:Key="FieldError" TargetType="TextBlock"><Setter Property="Foreground" Value="#FFB4B4"/><Setter Property="FontSize" Value="12"/><Setter Property="TextWrapping" Value="Wrap"/><Setter Property="Margin" Value="0,5,0,0"/></Style>
+  <Style TargetType="Button"><Setter Property="Cursor" Value="Hand"/><Setter Property="Padding" Value="14,9"/><Setter Property="FontSize" Value="14"/><Setter Property="FontWeight" Value="SemiBold"/><Setter Property="BorderThickness" Value="0"/></Style>
+ </Window.Resources>
+ <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="1.05*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+ <Border Grid.Column="0" Background="#192344" Padding="46"><Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <StackPanel Orientation="Horizontal"><Border Width="44" Height="44" CornerRadius="14" Background="#6958E8"><TextBlock Text="✦" FontSize="27" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="  ASHKAN / SOCIALSPHERE" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/></StackPanel>
+  <StackPanel Grid.Row="1" VerticalAlignment="Center"><TextBlock x:Name="HeroHeading" Text="Your world.&#10;Your community." FontSize="42" FontWeight="Bold" LineHeight="54"/><TextBlock x:Name="HeroSubtitle" Text="Share moments, discover people, and stay connected." Foreground="#B7C3E4" FontSize="17" TextWrapping="Wrap" Margin="0,22,0,0"/><Border Background="#29365B" CornerRadius="18" Padding="24" Margin="0,36,0,0"><StackPanel><TextBlock Text="✦   SHARE   •   DISCOVER   •   CONNECT" Foreground="#AFA5FF" FontWeight="Bold"/><TextBlock Text="A thoughtful social space built with .NET and WPF." TextWrapping="Wrap" Margin="0,12,0,0" Foreground="#D8DDF2"/></StackPanel></Border></StackPanel>
+  <TextBlock Grid.Row="2" Text="© Ashkan SocialSphere  •  Local-first preview" Foreground="#A9B5D6" FontSize="12"/>
+ </Grid></Border>
+ <Grid Grid.Column="1" Margin="48,28"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+ <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"><TextBlock x:Name="LanguageLabel" Text="Language" Foreground="#B9C5E0" VerticalAlignment="Center" Margin="0,0,10,0"/><ComboBox x:Name="LanguageSelector" Width="125" SelectedIndex="0" SelectionChanged="LanguageSelector_SelectionChanged"><ComboBoxItem Content="English"/><ComboBoxItem Content="فارسی"/></ComboBox></StackPanel>
+ <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"><StackPanel VerticalAlignment="Center" Margin="0,40,0,18">
+  <TextBlock x:Name="Heading" Text="Welcome back" FontSize="32" FontWeight="Bold"/><TextBlock x:Name="Subheading" Text="Sign in to continue your journey." Foreground="#ABB8D1" Margin="0,9,0,26" FontSize="14"/>
+  <TextBlock x:Name="UsernameLabel" Text="Username" Margin="0,0,0,8" Foreground="#C7D2EB"/><TextBox x:Name="UsernameInput" MaxLength="30" TextChanged="Fields_Changed" AutomationProperties.Name="Username" TabIndex="0"/>
+  <TextBlock x:Name="UsernameError" Style="{StaticResource FieldError}" Visibility="Collapsed" AutomationProperties.LiveSetting="Polite"/>
+  <TextBlock x:Name="NameLabel" Text="Display name" Margin="0,18,0,8" Foreground="#C7D2EB"/><TextBox x:Name="NameInput" MaxLength="80" TextChanged="Fields_Changed" AutomationProperties.Name="Display name" TabIndex="1"/>
+  <TextBlock x:Name="NameError" Style="{StaticResource FieldError}" Visibility="Collapsed" AutomationProperties.LiveSetting="Polite"/>
+  <TextBlock x:Name="PasswordLabel" Text="Password" Margin="0,18,0,8" Foreground="#C7D2EB"/><PasswordBox x:Name="PasswordInput" PasswordChanged="Password_Changed" AutomationProperties.Name="Password" TabIndex="2" Height="44" Padding="12" Background="#202C45" Foreground="White" BorderBrush="#465577"/>
+  <TextBlock x:Name="PasswordError" Style="{StaticResource FieldError}" Visibility="Collapsed" AutomationProperties.LiveSetting="Polite"/>
+  <TextBlock x:Name="PasswordHint" Foreground="#AAB6D1" FontSize="12" TextWrapping="Wrap" Margin="0,7,0,0" Visibility="Collapsed"/><TextBlock x:Name="Feedback" Foreground="#FFB4B4" TextWrapping="Wrap" Margin="0,14,0,10" MinHeight="25" AutomationProperties.LiveSetting="Polite"/>
+  <Button x:Name="SubmitButton" Content="Sign in" Click="Submit_Click" IsDefault="True" TabIndex="3" Height="46" Background="#6958E8" Foreground="White"/>
+  <Button x:Name="ModeButton" Content="Create a new account" Click="Mode_Click" TabIndex="4" Margin="0,14,0,0" Background="#293857" Foreground="White"/>
+  <TextBlock x:Name="PrivacyNote" Text="Local accounts • Passwords protected with PBKDF2" Foreground="#AAB6D1" FontSize="11" TextWrapping="Wrap" TextAlignment="Center" Margin="0,26,0,0"/>
+ </StackPanel></ScrollViewer></Grid></Grid>
+</Window>

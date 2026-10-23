@@ -1,0 +1,27 @@
+name: Windows build and security checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Restore solution
+        run: dotnet restore AshkanSocialSphere.slnx --force-evaluate
+      - name: NuGet vulnerability audit
+        shell: pwsh
+        run: ./scripts/audit-nuget.ps1
+      - name: Build Release
+        run: dotnet build AshkanSocialSphere.slnx --configuration Release --no-restore
+      - name: Domain checks
+        run: dotnet run --project tests/AshkanSocialSphere.DomainChecks --configuration Release --no-build
+      - name: SQLite integration checks
+        run: dotnet run --project tests/AshkanSocialSphere.IntegrationChecks --configuration Release --no-build

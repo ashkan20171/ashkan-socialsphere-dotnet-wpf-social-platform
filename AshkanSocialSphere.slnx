@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="src/AshkanSocialSphere.Domain/AshkanSocialSphere.Domain.csproj" />
+  <Project Path="src/AshkanSocialSphere.Application/AshkanSocialSphere.Application.csproj" />
+  <Project Path="src/AshkanSocialSphere.Infrastructure/AshkanSocialSphere.Infrastructure.csproj" />
+  <Project Path="src/AshkanSocialSphere.Desktop/AshkanSocialSphere.Desktop.csproj" />
+  <Project Path="tests/AshkanSocialSphere.DomainChecks/AshkanSocialSphere.DomainChecks.csproj" />
+  <Project Path="tests/AshkanSocialSphere.IntegrationChecks/AshkanSocialSphere.IntegrationChecks.csproj" />
+</Solution>
