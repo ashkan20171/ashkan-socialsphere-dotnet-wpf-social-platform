@@ -1,43 +1,106 @@
-# Ashkan SocialSphere
+<div align="center">
 
-**Bilingual desktop social networking platform · C# · .NET 10 · WPF · SQLite**
+# ✦ Ashkan SocialSphere
 
-A portfolio-ready, local-first social application demonstrating desktop product engineering, layered architecture, persistence, secure ownership checks, and thoughtful UX. Designed with **English LTR / Persian RTL**, a polished dark interface, user profiles, media posts, social interactions and direct messaging.
+### A thoughtfully engineered social experience for Windows.
 
-> **Scope:** This is a local-first Windows desktop prototype. It is **not** a deployed cloud social network, and messages do not synchronize across devices. Build and security audit must pass before production distribution.
+**A bilingual, local-first social networking desktop application built with C# · .NET 10 · WPF · EF Core · SQLite**
 
-## Features
+[![C#](https://img.shields.io/badge/C%23-C%23-512BD4?logo=csharp&logoColor=white)](https://learn.microsoft.com/dotnet/csharp/)
+[![.NET](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![WPF](https://img.shields.io/badge/UI-WPF-0078D4)](https://learn.microsoft.com/dotnet/desktop/wpf/)
+[![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows&logoColor=white)](https://www.microsoft.com/windows)
+[![Status](https://img.shields.io/badge/Status-Portfolio%20Prototype-F59E0B)](#project-status--limitations)
 
-- Feed, following feed, reactions, comments, people discovery and follow relationships
-- User profiles with avatar, cover, biography, personal posts and photo gallery
-- Up to four images per post; full-size preview and owner-only post editing/deletion
-- **Phase 51:** edit attached images (add/remove), character count and on-device text draft save/restore
-- Direct messaging, unread indicators, notifications and periodic chat refresh
-- Local SQLite database with EF Core, domain/application/infrastructure/desktop separation
-- English/Persian UI with LTR/RTL switching; dark/light themes and responsive shell
-- Windows packaging scripts, installer definition, integration checks and GitHub Actions validation
+**[Explore Features](#what-you-can-do) · [Architecture](#architecture--engineering-decisions) · [Get Started](#getting-started) · [Engineering Highlights](#engineering-highlights) · [Deutsch](#für-recruiter--hiring-manager)**
 
-## Architecture
+</div>
 
-| Project | Responsibility |
+---
+
+## The idea
+
+**What if a desktop social app felt as considered as a modern web product—without depending on a cloud backend?**
+
+Ashkan SocialSphere explores that question through a Windows-native experience combining social feeds, personal profiles, media-rich posts, conversations and notifications. Beyond the interface, it is a practical demonstration of **C#/.NET application design, persistence, separation of concerns, ownership-aware data operations and multilingual UX**.
+
+> **Project at a glance:** A local-first Windows desktop portfolio prototype—not a production social network or multi-device messaging service.
+
+## Product preview
+
+> 📸 **Screenshots coming soon.** Add real screenshots captured from a successful Windows build here before sharing with recruiters. Suggested captures: Feed, Profile & Gallery, Messaging, and Persian RTL mode.
+
+<!-- Replace these placeholders with actual verified screenshots, e.g. docs/screenshots/feed.png. -->
+
+## What you can do
+
+| Experience | Capabilities |
 | --- | --- |
-| `AshkanSocialSphere.Domain` | Domain models and core rules |
-| `AshkanSocialSphere.Application` | Repository contracts and application boundaries |
-| `AshkanSocialSphere.Infrastructure` | EF Core + SQLite persistence and data operations |
-| `AshkanSocialSphere.Desktop` | WPF UI, view models and presentation |
-| `tests/` | Domain and integration verification |
+| **Discover & connect** | Social feed, following feed, people discovery, follow relationships |
+| **Create & interact** | Text/image posts, reactions, comments, and post previews |
+| **Own your content** | Edit and delete your own posts; update attached images; ownership checks at the repository boundary |
+| **Express yourself** | Profile avatar, cover image, biography, personal posts and photo gallery |
+| **Stay in touch** | Direct messages, unread indicators, notifications and periodic chat refresh |
+| **Work bilingually** | English **LTR** and Persian **RTL** interface support |
+| **Make it yours** | Dark/light themes and a responsive desktop shell |
+| **Keep a draft** | On-device text draft save/restore for unfinished posts |
 
-## Getting started (Windows)
+**Media workflow:** Up to four images per post, with full-size preview. Removing an image from a post removes its reference, **not necessarily the original file on disk**. Drafts currently save text only.
 
-**Prerequisites:** Visual Studio with .NET desktop development workload, .NET 10 SDK.
+## Architecture & engineering decisions
+
+```text
+AshkanSocialSphere.slnx
+├── src/
+│   ├── AshkanSocialSphere.Domain          # Domain models and rules
+│   ├── AshkanSocialSphere.Application     # Contracts and application boundaries
+│   ├── AshkanSocialSphere.Infrastructure  # EF Core / SQLite persistence
+│   └── AshkanSocialSphere.Desktop         # WPF UI and view models
+├── tests/                                # Domain and integration checks
+├── scripts/                              # Build, release and audit helpers
+├── installer/                            # Windows installer definition
+└── .github/workflows/                    # Windows validation workflow
+```
+
+The solution separates **domain concepts**, **application contracts**, **data access** and **presentation**. This keeps UI concerns from becoming database concerns and makes individual layers easier to inspect and evolve.
+
+### Engineering highlights
+
+- **C# / .NET 10 / WPF:** Native Windows UI and view-model-driven presentation.
+- **EF Core + SQLite:** Structured local persistence without requiring a separately hosted database server.
+- **Authorization boundaries:** Post editing/deletion ownership is checked in repository operations, not only by hiding UI actions.
+- **Internationalisation:** English LTR and Persian RTL require attention to flow direction, alignment and translated interface strings.
+- **User-focused details:** Unread badges, empty states, media previews, editing feedback and draft recovery.
+- **Delivery tooling:** Windows build workflow, validation scripts and installer definition included in the repository.
+
+### Tech stack
+
+| Area | Technology |
+| --- | --- |
+| Language | C# |
+| Runtime | .NET 10 |
+| Desktop UI | Windows Presentation Foundation (WPF), XAML |
+| Persistence | Entity Framework Core, SQLite |
+| Architecture | Layered solution with domain, application, infrastructure and desktop projects |
+| Quality | Domain/integration check projects, Windows workflow and audit scripts |
+| Distribution | Windows publishing scripts and Inno Setup definition |
+
+## Getting started
+
+**Requirements:** Windows 10/11, [.NET 10 SDK](https://dotnet.microsoft.com/download), and optionally Visual Studio with the **.NET desktop development** workload.
 
 ```powershell
+# Clone your repository after publishing it to GitHub
+# git clone https://github.com/<YOUR-USERNAME>/ashkan-socialsphere-dotnet-wpf-social-platform.git
+# cd ashkan-socialsphere-dotnet-wpf-social-platform
+
 dotnet restore AshkanSocialSphere.slnx
 dotnet build AshkanSocialSphere.slnx -c Release
 dotnet run --project src/AshkanSocialSphere.Desktop
 ```
 
-Run checks:
+### Verification commands
 
 ```powershell
 dotnet run --project tests/AshkanSocialSphere.DomainChecks
@@ -46,26 +109,49 @@ pwsh -File scripts/verify-release.ps1
 pwsh -File scripts/audit-nuget.ps1
 ```
 
-Local user data is stored in `%LOCALAPPDATA%\AshkanSocialSphere`. Back up this folder before upgrades. Phase 51 drafts are text-only, saved in `post-draft.txt`; they do not include selected photo attachments. Removed photo references do **not** delete the source image files from disk.
+> The check projects are executable verification projects; do not assume they are `dotnet test` test projects. Review command output before describing a build or check as passing.
 
-## Quality and security notes
+### Local data & privacy
 
-- Owner-only edits/deletes are checked in the SQLite repository, not only in the UI.
-- Images are referenced from local disk. There is no cloud upload, distributed auth, or cross-device sync.
-- **NuGet `NU1903` advisory remains unresolved/unverified.** Audit and update vulnerable packages before release.
-- WPF compilation, visual testing and installer execution were not possible in the authoring environment; Windows CI is the required release gate.
+The application stores local user data under `%LOCALAPPDATA%\AshkanSocialSphere`. Back up this directory before significant upgrades. This prototype does **not** provide cloud synchronization, cross-device messaging or hosted user accounts.
 
-## Recruiter snapshot | Für Recruiter | معرفی پروژه
+## Project status & limitations
 
-**EN:** A C#/.NET desktop portfolio project showcasing layered design, EF Core/SQLite, bilingual WPF UX, media workflows and authorization boundaries.
+This repository is a **portfolio prototype under active development**. Transparency is part of the engineering story:
 
-**DE:** Zweisprachige WPF-Desktop-Anwendung mit C#/.NET, SQLite, mehrschichtiger Architektur, Profilen, Beiträgen, Nachrichten und rollenbezogenen Zugriffsprüfungen auf Datenebene.
+- **Windows compilation and interactive WPF testing have not yet been verified in the current authoring environment.** Run the commands above and confirm the workflow before publishing a release.
+- A **NuGet `NU1903` security advisory** has been reported and requires dependency auditing/remediation before distribution.
+- Messages and other data are **local-first**, not synchronized between devices.
+- Text drafts do not persist selected image attachments.
+- Removing image references does not automatically clean up source files on disk.
+- Installer scripts are included, but a successful installer build/install must be independently verified on Windows.
 
-**FA:** پروژه نمونه‌کار شبکه اجتماعی دسکتاپ با سی‌شارپ، WPF، معماری لایه‌ای، پایگاه داده SQLite و پشتیبانی فارسی و انگلیسی.
+**Roadmap:** strengthen Windows CI and dependency security, add automated UI coverage, improve media lifecycle cleanup, and evaluate an optional remote API/sync layer.
+
+## Für Recruiter & Hiring Manager
+
+**Ashkan SocialSphere** ist ein zweisprachiger Windows-Desktop-Prototyp, entwickelt mit **C#, .NET 10, WPF, Entity Framework Core und SQLite**. Das Projekt zeigt die praktische Umsetzung einer mehrschichtigen Softwarearchitektur, datenbankgestützter Funktionen, benutzerbezogener Berechtigungsprüfungen sowie einer Oberfläche mit **Englisch (LTR) und Persisch (RTL)**.
+
+**Technische Schwerpunkte:** C#/.NET-Entwicklung · WPF/XAML · EF Core · SQLite · Softwarearchitektur · UI/UX · Internationalisierung · Wartbarkeit.
+
+*Hinweis: Es handelt sich um ein lokal betriebenes Portfolio-Projekt, nicht um eine produktiv betriebene Cloud-Plattform.*
+
+## About the developer
+
+Created by **Ashkan Motaei** as a hands-on software engineering portfolio project, with a focus on desktop product development, maintainable architecture, and thoughtful bilingual interfaces.
+
+**GitHub:** [ashkan20171](https://github.com/ashkan20171)
 
 ## License
 
-No license has been selected. Contact the repository owner for reuse permissions; publishing source code does not automatically grant redistribution rights.
+No open-source license has been selected yet. **Source visibility does not automatically grant permission to reuse or redistribute the code.** Add a `LICENSE` file if you intend to allow third-party use.
 
-See `PHASE51_NOTES_FA.md` for this release and `docs/` for additional technical notes.
-"# ashkan-socialsphere-dotnet-wpf-social-platform" 
+---
+
+<div align="center">
+
+**Built to demonstrate how product thinking and software engineering meet.**
+
+*C# · .NET · WPF · EF Core · SQLite · English/Persian UX*
+
+</div>
